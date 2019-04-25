@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  moedns:
+    cap_add:
+      - NET_ADMIN
+    container_name: moedns
+    build: ./.docker/
+    image: dglinux/moedns:0.1
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+    restart: always
+    volumes:
+      - ./volumes/etc/dnsmasq.conf:/etc/dnsmasq.conf
+      - ./volumes/etc/dnsmasq.d:/etc/dnsmasq.d
