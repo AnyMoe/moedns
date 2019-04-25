@@ -24,4 +24,4 @@ COPY --from=goBuilder /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/
 
 EXPOSE 53 53/udp
 
-ENTRYPOINT ["/bin/sh", "-c", "/usr/local/bin/build.sh;(/usr/local/bin/cloudflared proxy-dns --address 0.0.0.0 --port 5353 &);/usr/local/bin/start.sh;"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/build.sh;(/usr/local/bin/cloudflared proxy-dns --address 0.0.0.0 --port 5353 &);/usr/local/bin/start.sh;"]
