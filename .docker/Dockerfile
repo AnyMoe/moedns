@@ -15,8 +15,7 @@ VOLUME ["/etc/dnsmasq.d"]
 
 WORKDIR /usr/local/bin/
 COPY build.sh .
-COPY start.sh .
-RUN chmod 744 build.sh start.sh;
+RUN chmod 744 build.sh;
 
 RUN echo -e "\nlisten-address=0.0.0.0\nuser=root\nno-resolv\nno-poll\nserver=127.0.0.1#5353\n" >> /etc/dnsmasq.conf
 
@@ -24,4 +23,4 @@ COPY --from=goBuilder /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/
 
 EXPOSE 53 53/udp
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/build.sh;(/usr/local/bin/cloudflared proxy-dns --address 0.0.0.0 --port 5353 &);/usr/local/bin/start.sh;"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/build.sh;(/usr/local/bin/cloudflared proxy-dns --address 0.0.0.0 --port 5353 &);dnsmasq -k;"]

@@ -14,3 +14,4 @@ services:
     volumes:
       - ./volumes/etc/dnsmasq.conf:/etc/dnsmasq.conf
       - ./volumes/etc/dnsmasq.d:/etc/dnsmasq.d
+      - ./volumes/var/log:/var/log
