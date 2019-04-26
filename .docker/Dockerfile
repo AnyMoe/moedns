@@ -6,7 +6,9 @@ RUN apk update; \
 WORKDIR /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared
 RUN go build ./
 
-FROM alpine:3.9
+FROM alpine:edge
+
+LABEL MAINTAINER "AnyMoe"  
 
 RUN apk --no-cache add bash ca-certificates dnsmasq; \
         rm -rf /var/cache/apk/*;
@@ -16,8 +18,6 @@ VOLUME ["/etc/dnsmasq.d"]
 WORKDIR /usr/local/bin/
 COPY build.sh .
 RUN chmod 744 build.sh;
-
-RUN echo -e "\nlisten-address=0.0.0.0\nuser=root\nno-resolv\nno-poll\nserver=127.0.0.1#5353\n" >> /etc/dnsmasq.conf
 
 COPY --from=goBuilder /go/src/github.com/cloudflare/cloudflared/cmd/cloudflared/cloudflared /usr/local/bin/cloudflared
 

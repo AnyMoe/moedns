@@ -6,7 +6,9 @@ services:
       - NET_ADMIN
     container_name: moedns
     build: ./.docker/
-    image: dglinux/moedns:0.1
+    image: dglinux/moedns:0.2
+    environment:
+      - CN_DNS=101.226.4.6
     ports:
       - "53:53/tcp"
       - "53:53/udp"

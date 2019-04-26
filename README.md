@@ -12,3 +12,9 @@ docker-compose up -d
 enjoy!
 
 P.S. you should install [Docker](https://www.docker.com) and [Docker Compose](https://docs.docker.com/compose/) first.
+
+## Environment Variables:
+
+| Name              | Default Value               |
+| ----------------- | --------------------------- |
+| CN_DNS            | 114.114.114.114             |
