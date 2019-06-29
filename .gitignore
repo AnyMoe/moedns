@@ -1,2 +1,2 @@
-/volumes/etc/dnsmasq.d/*
+/volumes/etc/unbound/conf/*
 /volumes/var/log
