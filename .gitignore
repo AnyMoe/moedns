@@ -1,2 +1,3 @@
 /volumes/etc/unbound/conf/*
 /volumes/var/log
+*.log

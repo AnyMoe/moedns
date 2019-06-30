@@ -17,3 +17,14 @@ services:
     volumes:
       - ./volumes/etc/unbound:/etc/unbound
       - ./volumes/var/log:/var/log
+
+  doh:
+    container_name: doh
+    build: ./doh/
+    image: doh:2.1.1
+    ports:
+      - "127.0.0.1:8053:8053/tcp"
+      - "127.0.0.1:8053:8053/udp"
+    restart: always
+    volumes:
+      - ./volumes/etc/dns-over-https/doh-server.conf:/etc/dns-over-https/doh-server.conf
